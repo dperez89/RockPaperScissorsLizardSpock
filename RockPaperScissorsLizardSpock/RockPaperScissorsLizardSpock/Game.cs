@@ -14,6 +14,7 @@ namespace RockPaperScissorsLizardSpock
         string userInput;
         string player1Move;
         string player2Move;
+        string roundWinner;
 
         //constructor
         public Game()
@@ -22,11 +23,19 @@ namespace RockPaperScissorsLizardSpock
         }
 
         //methods
-        public void PlayGame(Player player1, Player player2, UI userInterface)
-        {
-            player1Move = ResolveMoveChoices(player1.SelectMove(userInterface));
-            player2Move = ResolveMoveChoices(player2.SelectMove(userInterface));
+        public void PlayRound(Player player1, Player player2, UI userInterface)
 
+        {
+            player1Move = GetResolvedMoveChoices(player1.SelectMove(userInterface));
+            player2Move = GetResolvedMoveChoices(player2.SelectMove(userInterface));
+            Console.WriteLine("Player 1 rolled a " + player1Move + "!");
+            Console.WriteLine("Player 2 rolled a " + player2Move + "!");
+            roundWinner = GetRoundWinner(player1Move, player2Move, player1, player2, roundWinner);
+            SetWinnerScore(roundWinner, player1, player2);
+            Console.WriteLine(roundWinner + "'s " + player1Move + " wins!");
+            Console.WriteLine("Player 1's score is now " + player1.score + "!");
+            Console.WriteLine("Player 2's score is now " + player2.score + "!");
+            PlayRound(player1, player2, userInterface);
         }
         public void EndGame()
         {
@@ -57,17 +66,17 @@ namespace RockPaperScissorsLizardSpock
             {
                 player1 = new Human(0, "Player 1");
                 player2 = new Human(0, "Player 2");
-                PlayGame(player1, player2, userInterface);
+                PlayRound(player1, player2, userInterface);
             }
             else if (userInput == "computer")
             {
                 player1 = new Human(0, "Player 1");
                 player2 = new Computer(0, "The Computah");
-                PlayGame(player1, player2, userInterface);
+                PlayRound(player1, player2, userInterface);
             }
 
         }
-        private string ResolveMoveChoices(string playerMove)
+        private string GetResolvedMoveChoices(string playerMove)
         {
             switch(playerMove)
             {
@@ -93,9 +102,66 @@ namespace RockPaperScissorsLizardSpock
             }
             return playerMove;
         }
-        private void KeepScore()
+        private string GetRoundWinner(string player1Move, string player2Move, Player player1, Player player2, string roundWinner)
         {
-
+            if(player1Move == "Rock")
+            {
+                if (player2Move == "Lizard" || player2Move == "Scissors")
+                {
+                    roundWinner = "Player 1";
+                    return roundWinner;   
+                }
+            }
+            else if (player1Move == "Paper")
+            {
+                if (player2Move == "Rock" || player2Move == "Spock")
+                {
+                    roundWinner = "Player 1";
+                    return roundWinner;
+                }
+            }
+            else if (player1Move == "Scissors")
+            {
+                if (player2Move == "Paper" || player2Move == "Lizard")
+                {
+                    roundWinner = "Player 1";
+                    return roundWinner;
+                }
+            }
+            else if (player1Move == "Lizard")
+            {
+                if (player2Move == "Paper" || player2Move == "Spock")
+                {
+                    roundWinner = "Player 1";
+                    return roundWinner;
+                }
+            }
+            else if (player1Move == "Spock")
+            {
+                if (player2Move == "Scissors" || player2Move == "Rock")
+                {
+                    roundWinner = "Player 1";
+                    return roundWinner;
+                }
+            }
+            else if(player1Move == player2Move)
+            {
+                roundWinner = "It was a tie!";
+                return roundWinner;
+            }            
+            roundWinner = "Player 2";
+            return roundWinner;                       
+        }
+        private void SetWinnerScore(string roundWinner, Player player1, Player player2)
+        {
+            if(roundWinner == "Player 1")
+            {
+                player1.score += 1;
+            }
+            else if(roundWinner == "Player 2")
+            {
+                player2.score += 1;
+            }
         }
     }
 }

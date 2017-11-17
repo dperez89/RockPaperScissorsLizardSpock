@@ -9,9 +9,9 @@ namespace RockPaperScissorsLizardSpock
    class Player
     {
         //member variable
-        protected int score = 0;
-        protected string name;
-        protected string move;
+        public int score = 0;
+        public string name;
+        public string move;
 
         //constructor
         public Player()
