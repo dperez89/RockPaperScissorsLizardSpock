@@ -18,6 +18,10 @@ namespace RockPaperScissorsLizardSpock
         public override string SelectMove(UI userInterface)
         {
             move = userInterface.DisplayPlayerMoveChoices();
+            if(move == "false")
+            {
+                SelectMove(userInterface);
+            }
             return move;
         }
     }

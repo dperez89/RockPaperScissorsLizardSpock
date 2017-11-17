@@ -70,13 +70,16 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("(T) Spock");
             Console.WriteLine(Environment.NewLine);
             userInput = GetUserInput();
-            if(userInput != "q" || userInput != "w" || userInput != "e" || userInput != "r" || userInput != "t")
+            if(userInput == "q" || userInput == "w" || userInput == "e" || userInput == "r" || userInput == "t")
+            {
+                return userInput;
+            }
+            else
             {
                 Console.WriteLine("Selection not recognized, please try again!");
-                DisplayPlayerMoveChoices();
+                userInput = "false";
+                return userInput;
             }
-
-            return userInput;
 
         }
         private void DisplayGameResults()

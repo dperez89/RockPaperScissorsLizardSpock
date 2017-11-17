@@ -22,10 +22,10 @@ namespace RockPaperScissorsLizardSpock
         }
 
         //methods
-        public void StartGame(Player player1, Player player2, UI userInterface)
+        public void PlayGame(Player player1, Player player2, UI userInterface)
         {
-            player1Move = player1.SelectMove(userInterface);
-            player2Move = player2.SelectMove(userInterface);
+            player1Move = ResolveMoveChoices(player1.SelectMove(userInterface));
+            player2Move = ResolveMoveChoices(player2.SelectMove(userInterface));
 
         }
         public void EndGame()
@@ -57,19 +57,41 @@ namespace RockPaperScissorsLizardSpock
             {
                 player1 = new Human(0, "Player 1");
                 player2 = new Human(0, "Player 2");
-                StartGame(player1, player2, userInterface);
+                PlayGame(player1, player2, userInterface);
             }
             else if (userInput == "computer")
             {
                 player1 = new Human(0, "Player 1");
                 player2 = new Computer(0, "The Computah");
-                StartGame(player1, player2, userInterface);
+                PlayGame(player1, player2, userInterface);
             }
 
         }
-        private void EvaluateRolls()
+        private string ResolveMoveChoices(string playerMove)
         {
+            switch(playerMove)
+            {
+                case "q":
+                    playerMove = "Rock";
+                    break;
 
+                case "w":
+                    playerMove = "Paper";
+                    break;
+
+                case "e":
+                    playerMove = "Scissors";
+                    break;
+
+                case "r":
+                    playerMove = "Lizard";
+                    break;
+
+                case "t":
+                    playerMove = "Spock";
+                    break;
+            }
+            return playerMove;
         }
         private void KeepScore()
         {
