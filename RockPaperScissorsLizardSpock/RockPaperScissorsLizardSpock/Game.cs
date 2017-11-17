@@ -32,7 +32,7 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("Player 2 rolled a " + player2Move + "!");
             roundWinner = GetRoundWinner(player1Move, player2Move, player1, player2, roundWinner);
             SetWinnerScore(roundWinner, player1, player2);
-            Console.WriteLine(roundWinner + "'s " + player1Move + " wins!");
+            Console.WriteLine(roundWinner + " wins!");
             Console.WriteLine("Player 1's score is now " + player1.score + "!");
             Console.WriteLine("Player 2's score is now " + player2.score + "!");
             PlayRound(player1, player2, userInterface);
@@ -104,7 +104,13 @@ namespace RockPaperScissorsLizardSpock
         }
         private string GetRoundWinner(string player1Move, string player2Move, Player player1, Player player2, string roundWinner)
         {
-            if(player1Move == "Rock")
+
+            if (player1Move == player2Move)
+            {
+                roundWinner = "Tie";
+                return roundWinner;
+            }
+            else if (player1Move == "Rock")
             {
                 if (player2Move == "Lizard" || player2Move == "Scissors")
                 {
@@ -143,12 +149,7 @@ namespace RockPaperScissorsLizardSpock
                     roundWinner = "Player 1";
                     return roundWinner;
                 }
-            }
-            else if(player1Move == player2Move)
-            {
-                roundWinner = "It was a tie!";
-                return roundWinner;
-            }            
+            }           
             roundWinner = "Player 2";
             return roundWinner;                       
         }
@@ -161,6 +162,10 @@ namespace RockPaperScissorsLizardSpock
             else if(roundWinner == "Player 2")
             {
                 player2.score += 1;
+            }
+            else if(roundWinner == "Tie")
+            {
+
             }
         }
     }
