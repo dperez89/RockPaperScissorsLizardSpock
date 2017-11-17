@@ -11,9 +11,9 @@ namespace RockPaperScissorsLizardSpock
         //member variables
 
         //constructor
-        public Computer()
+        public Computer(int score, string name)
         {
-
+       
         }
         //member methods
     }

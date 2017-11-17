@@ -9,7 +9,9 @@ namespace RockPaperScissorsLizardSpock
    class Player
     {
         //member variable
-        int score;
+        protected int score = 0;
+        protected string name;
+        protected string move;
 
         //constructor
         public Player()
@@ -18,9 +20,12 @@ namespace RockPaperScissorsLizardSpock
         }
 
         //methods
-        private void Roll()
+        public virtual string SelectMove(UI userInterface)
         {
+            userInterface.DisplayPlayerMoveChoices();
 
+
+            return move;
         }
     }
 }

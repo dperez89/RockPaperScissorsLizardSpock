@@ -9,12 +9,16 @@ namespace RockPaperScissorsLizardSpock
     class Human : Player
     {
         //member variables
-
         //constructor
-        public Human()
+        public Human(int score, string name)
         {
-
+            
         }
         //member methods
+        public override string SelectMove(UI userInterface)
+        {
+            move = userInterface.DisplayPlayerMoveChoices();
+            return move;
+        }
     }
 }

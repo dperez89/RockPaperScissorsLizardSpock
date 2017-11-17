@@ -59,6 +59,26 @@ namespace RockPaperScissorsLizardSpock
             userInput = GetUserInput();
             return userInput;
         }
+        public string DisplayPlayerMoveChoices()
+        {
+            Console.WriteLine("Choose a move!");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("(Q) Rock");
+            Console.WriteLine("(W) Paper");
+            Console.WriteLine("(E) Scissors");
+            Console.WriteLine("(R) Lizard");
+            Console.WriteLine("(T) Spock");
+            Console.WriteLine(Environment.NewLine);
+            userInput = GetUserInput();
+            if(userInput != "q" || userInput != "w" || userInput != "e" || userInput != "r" || userInput != "t")
+            {
+                Console.WriteLine("Selection not recognized, please try again!");
+                DisplayPlayerMoveChoices();
+            }
+
+            return userInput;
+
+        }
         private void DisplayGameResults()
         {
 
