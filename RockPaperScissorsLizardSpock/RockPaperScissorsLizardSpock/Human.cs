@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-    class Program
+    class Human : Player
     {
-        static void Main(string[] args)
+        //member variables
+
+        //constructor
+        public Human()
         {
-            UI userInterface = new UI();
-            userInterface.DisplayMainMenu();
-            Console.ReadKey();
+
         }
+        //member methods
     }
 }

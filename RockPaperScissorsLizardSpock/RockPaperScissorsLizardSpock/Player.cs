@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RockPaperScissorsLizardSpock
 {
-    class Player
+   class Player
     {
         //member variable
         int score;
 
         //constructor
-        public Player(int score)
+        public Player()
         {
-            this.score = score;
+
         }
 
         //methods
