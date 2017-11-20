@@ -28,8 +28,7 @@ namespace RockPaperScissorsLizardSpock
         {
             player1Move = GetResolvedMoveChoices(player1.SelectMove(userInterface));
             player2Move = GetResolvedMoveChoices(player2.SelectMove(userInterface));
-            Console.WriteLine("Player 1 rolled a " + player1Move + "!");
-            Console.WriteLine("Player 2 rolled a " + player2Move + "!");
+            userInterface.DisplayPlayerMoves(player1Move, player2Move);
             roundWinner = GetRoundWinner(player1Move, player2Move, player1, player2, roundWinner);
             SetWinnerScore(roundWinner, player1, player2);
             Console.WriteLine(roundWinner + " wins!");
@@ -114,7 +113,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 if (player2Move == "Lizard" || player2Move == "Scissors")
                 {
-                    roundWinner = "Player 1";
+                    roundWinner = player1.name;
                     return roundWinner;   
                 }
             }
@@ -122,7 +121,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 if (player2Move == "Rock" || player2Move == "Spock")
                 {
-                    roundWinner = "Player 1";
+                    roundWinner = player1.name;
                     return roundWinner;
                 }
             }
@@ -130,7 +129,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 if (player2Move == "Paper" || player2Move == "Lizard")
                 {
-                    roundWinner = "Player 1";
+                    roundWinner = player1.name;
                     return roundWinner;
                 }
             }
@@ -138,7 +137,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 if (player2Move == "Paper" || player2Move == "Spock")
                 {
-                    roundWinner = "Player 1";
+                    roundWinner = player1.name;
                     return roundWinner;
                 }
             }
@@ -146,20 +145,20 @@ namespace RockPaperScissorsLizardSpock
             {
                 if (player2Move == "Scissors" || player2Move == "Rock")
                 {
-                    roundWinner = "Player 1";
+                    roundWinner = player1.name;
                     return roundWinner;
                 }
             }           
-            roundWinner = "Player 2";
+            roundWinner = player2.name;
             return roundWinner;                       
         }
         private void SetWinnerScore(string roundWinner, Player player1, Player player2)
         {
-            if(roundWinner == "Player 1")
+            if(roundWinner == player1.name)
             {
                 player1.score += 1;
             }
-            else if(roundWinner == "Player 2")
+            else if(roundWinner == player2.name)
             {
                 player2.score += 1;
             }

@@ -53,6 +53,12 @@ namespace RockPaperScissorsLizardSpock
             return userInput;
 
         }
+
+        public void DisplayPlayerMoves(string player1Move, string player2Move)
+        {
+            Console.WriteLine("Player 1 rolled a " + player1Move + "!");
+            Console.WriteLine("Player 2 rolled a " + player2Move + "!");
+        }
         public string DisplayNumberOfPlayersRequest()
         {
             Console.WriteLine("Will you be playing against the COMPUTER or did you bring a FRIEND today?");
