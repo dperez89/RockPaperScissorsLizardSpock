@@ -53,6 +53,11 @@ namespace RockPaperScissorsLizardSpock
             return userInput;
 
         }
+        public void DisplayPlayerScores(Player player1, Player player2)
+        {
+            Console.WriteLine("Player 1's score is now " + player1.score + "!");
+            Console.WriteLine("Player 2's score is now " + player2.score + "!");
+        }
 
         public void DisplayPlayerMoves(string player1Move, string player2Move)
         {
