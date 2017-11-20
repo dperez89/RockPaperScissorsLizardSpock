@@ -15,11 +15,13 @@ namespace RockPaperScissorsLizardSpock
         //constructor
         public Computer(int score, string name)
         {
+            this.name = name;
                 
         }
         //member methods
-        public override string SelectMove(UI userInterface)
+        public override void SelectMove(UI userInterface, Game game1)
         {
+            DisplayComputerIsChoosing();
             randomNumber = random.Next(0, 5);
             switch (randomNumber)
             {
@@ -44,7 +46,14 @@ namespace RockPaperScissorsLizardSpock
                     break;
 
             }
-            return move;
+        }
+        private void DisplayComputerIsChoosing()
+        {
+            Console.Clear();
+            Console.WriteLine("The computer will now make its selection. Good luck!");
+            Console.WriteLine("Press any key to continue..");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

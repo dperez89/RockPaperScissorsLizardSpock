@@ -20,12 +20,9 @@ namespace RockPaperScissorsLizardSpock
         }
 
         //methods
-        public virtual string SelectMove(UI userInterface)
+        public virtual void SelectMove(UI userInterface, Game game1)
         {
-            userInterface.DisplayPlayerMoveChoices();
-
-
-            return move;
+            userInterface.DisplayPlayerMoveChoices(name);
         }
     }
 }

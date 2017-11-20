@@ -9,20 +9,23 @@ namespace RockPaperScissorsLizardSpock
     class Human : Player
     {
         //member variables
+        bool isChoiceValid;
         //constructor
         public Human(int score, string name)
         {
-            
+            this.name = name;
         }
         //member methods
-        public override string SelectMove(UI userInterface)
+        public override void SelectMove(UI userInterface, Game game1)
         {
-            move = userInterface.DisplayPlayerMoveChoices();
-            if(move == "false")
+            userInterface.DisplayPlayerMoveChoices(name);
+            move = userInterface.GetUserInput();
+            isChoiceValid = game1.ValidatePlayerMoveChoice(move, isChoiceValid, userInterface);
+            if (!isChoiceValid) 
             {
-                SelectMove(userInterface);
+                SelectMove(userInterface, game1);
             }
-            return move;
+            Console.Clear();
         }
     }
 }

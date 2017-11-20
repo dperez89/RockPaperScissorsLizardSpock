@@ -15,6 +15,8 @@ namespace RockPaperScissorsLizardSpock
         string player1Move;
         string player2Move;
         string roundWinner;
+        string gameWinner;
+        int winningScore = 3;
 
         //constructor
         public Game()
@@ -23,49 +25,85 @@ namespace RockPaperScissorsLizardSpock
         }
 
         //methods
-        public void PlayRound(Player player1, Player player2, UI userInterface)
-
-        {
-            player1Move = GetResolvedMoveChoices(player1.SelectMove(userInterface));
-            player2Move = GetResolvedMoveChoices(player2.SelectMove(userInterface));
+        public void PlayRound(Player player1, Player player2, UI userInterface, Game game1)
+        {     
+            player1.SelectMove(userInterface, game1);
+            player1Move = GetResolvedMoveChoices(player1.move);
+            player2.SelectMove(userInterface, game1);
+            player2Move = GetResolvedMoveChoices(player2.move);
             userInterface.DisplayPlayerMoves(player1Move, player2Move);
             roundWinner = GetRoundWinner(player1Move, player2Move, player1, player2, roundWinner);
             SetWinnerScore(roundWinner, player1, player2);
             userInterface.DisplayRoundWinner(roundWinner);
             userInterface.DisplayPlayerScores(player1, player2);
-            PlayRound(player1, player2, userInterface);
+            if(player1.score == winningScore || player2.score == winningScore)
+            {
+                Console.ReadKey();
+                GetGameWinner(player1, player2, userInterface);
+            }
+            else
+            {
+                Console.WriteLine(Environment.NewLine);
+                Console.WriteLine("Press any key to continue to the next round...");
+                Console.ReadKey();
+                Console.Clear();
+                PlayRound(player1, player2, userInterface, game1);
+            }
         }
-        public void EndGame()
+        private void GetGameWinner(Player player1, Player player2, UI userInterface)
         {
-
+            if (player1.score == winningScore)
+            {
+                gameWinner = player1.name;
+            }
+            else if (player2.score == winningScore)
+            {
+                gameWinner = player2.name;
+            }
+            userInterface.DisplayGameWinner(gameWinner);
         }
-        public void GetNumberOfPlayers(UI userInterface)
+        public bool ValidatePlayerMoveChoice(string move, bool isChoiceValid, UI userInterface)
+        {
+            if (move == "q" || move == "w" || move == "e" || move == "r" || move == "t")
+            {
+                isChoiceValid = true;
+                return isChoiceValid;
+            }
+            else
+            {
+                Console.WriteLine("Selection not recognized, please try again!");
+                Console.ReadKey();
+                isChoiceValid = false;
+                return isChoiceValid;
+            }
+        }
+        public void GetNumberOfPlayers(UI userInterface, Game game1)
         {
             userInterface.DisplayNumberOfPlayersRequest();
             userInput = userInterface.GetUserInput();
             userInput = userInterface.DisplayPlayerSelectionChoice(userInput);
             if(userInput == "error")
             {
-                GetNumberOfPlayers(userInterface);
+                GetNumberOfPlayers(userInterface, game1);
             }
             else
             {
-                GeneratePlayers(userInput, userInterface);
+                GeneratePlayers(userInput, userInterface, game1);
             }            
         }
-        public void GeneratePlayers(string userInput, UI userInterface)
+        public void GeneratePlayers(string userInput, UI userInterface, Game game1)
         {
             if (userInput == "friend")
             {
                 player1 = new Human(0, "Player 1");
                 player2 = new Human(0, "Player 2");
-                PlayRound(player1, player2, userInterface);
+                PlayRound(player1, player2, userInterface, game1);
             }
             else if (userInput == "computer")
             {
                 player1 = new Human(0, "Player 1");
                 player2 = new Computer(0, "The Computah");
-                PlayRound(player1, player2, userInterface);
+                PlayRound(player1, player2, userInterface, game1);
             }
 
         }

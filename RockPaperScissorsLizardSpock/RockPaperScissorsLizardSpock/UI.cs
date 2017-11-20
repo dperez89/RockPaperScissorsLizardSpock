@@ -27,12 +27,14 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("START",Environment.NewLine);
             Console.WriteLine("EXIT",Environment.NewLine);
-            Console.WriteLine(Environment.NewLine);
-            GetUserInput();
-
-            if (userInput == "start")
+            GetMainMenuSelection();
+        }
+        private void GetMainMenuSelection()
+        {
+            userInput = GetUserInput();
+            if(userInput == "start")
             {
-                game1.GetNumberOfPlayers(this);
+                game1.GetNumberOfPlayers(this, game1);
             }
             else if (userInput == "exit")
             {
@@ -41,6 +43,8 @@ namespace RockPaperScissorsLizardSpock
             else
             {
                 Console.WriteLine("Command not recognized, please try again!");
+                Console.WriteLine("Press any key to continue..");
+                Console.ReadKey();
                 Console.Clear();
                 DisplayMainMenu();
             }
@@ -48,8 +52,10 @@ namespace RockPaperScissorsLizardSpock
         }
         public string GetUserInput()
         {
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("What do you choose?:");
             userInput = Console.ReadLine().ToLower();
+            Console.WriteLine(Environment.NewLine);
             return userInput;
 
         }
@@ -59,19 +65,25 @@ namespace RockPaperScissorsLizardSpock
         }
         public string DisplayPlayerSelectionChoice(string userInput)
         {
+            Console.Clear();
             if (userInput == "friend")
             {
-                Console.WriteLine("You have chosen friend!");
+                Console.WriteLine("Alright, glad to see you brought a friend with you today!");
+                Console.WriteLine(Environment.NewLine);
                 return userInput;
             }
             else if (userInput == "computer")
             {
-                Console.WriteLine("You have chosen computer!");
+                Console.WriteLine("Got it, the computer is all set to play with you today!");
+                Console.WriteLine(Environment.NewLine);
                 return userInput;
             }
             else
             {
+                Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("You have made an invalid option, please try again!");
+                Console.WriteLine("Press any key to continue..");
+                Console.ReadKey();
                 userInput = "error";
                 return userInput;
             }
@@ -82,45 +94,38 @@ namespace RockPaperScissorsLizardSpock
             Console.WriteLine("Player 1's score is now " + player1.score + "!");
             Console.WriteLine("Player 2's score is now " + player2.score + "!");
         }
-
         public void DisplayPlayerMoves(string player1Move, string player2Move)
         {
+            Console.WriteLine("ROUND RESULTS");
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Player 1 rolled a " + player1Move + "!");
             Console.WriteLine("Player 2 rolled a " + player2Move + "!");
         }
         public void DisplayNumberOfPlayersRequest()
         {
+            Console.Clear();
             Console.WriteLine("Will you be playing against the COMPUTER or did you bring a FRIEND today?");
         }
-        public string DisplayPlayerMoveChoices()
+        public void DisplayPlayerMoveChoices(string currentPlayerName)
         {
+            Console.WriteLine(currentPlayerName + "'s Turn");
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Choose a move!");
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("(Q) Rock");
             Console.WriteLine("(W) Paper");
             Console.WriteLine("(E) Scissors");
             Console.WriteLine("(R) Lizard");
-            Console.WriteLine("(T) Spock");
+            Console.WriteLine("(T) Spock");            
+        }
+        public void DisplayGameWinner(string gameWinner)
+        {
             Console.WriteLine(Environment.NewLine);
-            userInput = GetUserInput();
-            if(userInput == "q" || userInput == "w" || userInput == "e" || userInput == "r" || userInput == "t")
-            {
-                return userInput;
-            }
-            else
-            {
-                Console.WriteLine("Selection not recognized, please try again!");
-                userInput = "false";
-                return userInput;
-            }
-
-        }
-        private void DisplayGameResults()
-        {
-
-        }
-        private void DisplayPlayerScore()
-        {
+            Console.WriteLine("Congratulations to " + gameWinner + "! You are today's winner!");
+            Console.WriteLine("Press any key to return to the main menu...");
+            Console.ReadKey();
+            Console.Clear();
+            DisplayMainMenu();
 
         }
         private void DisplayExitMessage()
