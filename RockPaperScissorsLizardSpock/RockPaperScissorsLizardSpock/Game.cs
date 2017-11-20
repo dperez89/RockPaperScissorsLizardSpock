@@ -31,7 +31,7 @@ namespace RockPaperScissorsLizardSpock
             userInterface.DisplayPlayerMoves(player1Move, player2Move);
             roundWinner = GetRoundWinner(player1Move, player2Move, player1, player2, roundWinner);
             SetWinnerScore(roundWinner, player1, player2);
-            Console.WriteLine(roundWinner + " wins!");
+            userInterface.DisplayRoundWinner(roundWinner);
             userInterface.DisplayPlayerScores(player1, player2);
             PlayRound(player1, player2, userInterface);
         }

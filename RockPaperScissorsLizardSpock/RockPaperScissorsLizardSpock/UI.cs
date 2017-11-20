@@ -53,6 +53,10 @@ namespace RockPaperScissorsLizardSpock
             return userInput;
 
         }
+        public void DisplayRoundWinner(string roundWinner)
+        {
+            Console.WriteLine(roundWinner + " wins!");
+        }
         public void DisplayPlayerScores(Player player1, Player player2)
         {
             Console.WriteLine("Player 1's score is now " + player1.score + "!");
