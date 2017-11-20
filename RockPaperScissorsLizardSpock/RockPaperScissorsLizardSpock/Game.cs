@@ -16,6 +16,12 @@ namespace RockPaperScissorsLizardSpock
         string player2Move;
         string roundWinner;
         string gameWinner;
+        string rock = "Rock";
+        string paper = "Paper";
+        string scissors = "Scissors";
+        string lizard = "Lizard";
+        string spock = "Spock";
+        string tie = "Nobody";
         int winningScore = 3;
 
         //constructor
@@ -73,6 +79,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 Console.WriteLine("Selection not recognized, please try again!");
                 Console.ReadKey();
+                Console.Clear();
                 isChoiceValid = false;
                 return isChoiceValid;
             }
@@ -112,23 +119,23 @@ namespace RockPaperScissorsLizardSpock
             switch(playerMove)
             {
                 case "q":
-                    playerMove = "Rock";
+                    playerMove = rock;
                     break;
 
                 case "w":
-                    playerMove = "Paper";
+                    playerMove = paper;
                     break;
 
                 case "e":
-                    playerMove = "Scissors";
+                    playerMove = scissors;
                     break;
 
                 case "r":
-                    playerMove = "Lizard";
+                    playerMove = lizard;
                     break;
 
                 case "t":
-                    playerMove = "Spock";
+                    playerMove = spock;
                     break;
             }
             return playerMove;
@@ -138,44 +145,44 @@ namespace RockPaperScissorsLizardSpock
 
             if (player1Move == player2Move)
             {
-                roundWinner = "Tie";
+                roundWinner = tie;
                 return roundWinner;
             }
-            else if (player1Move == "Rock")
+            else if (player1Move == rock)
             {
-                if (player2Move == "Lizard" || player2Move == "Scissors")
+                if (player2Move == lizard || player2Move == scissors)
                 {
                     roundWinner = player1.name;
                     return roundWinner;   
                 }
             }
-            else if (player1Move == "Paper")
+            else if (player1Move == paper)
             {
-                if (player2Move == "Rock" || player2Move == "Spock")
+                if (player2Move == rock || player2Move == spock)
                 {
                     roundWinner = player1.name;
                     return roundWinner;
                 }
             }
-            else if (player1Move == "Scissors")
+            else if (player1Move == scissors)
             {
-                if (player2Move == "Paper" || player2Move == "Lizard")
+                if (player2Move == paper || player2Move == lizard)
                 {
                     roundWinner = player1.name;
                     return roundWinner;
                 }
             }
-            else if (player1Move == "Lizard")
+            else if (player1Move == lizard)
             {
-                if (player2Move == "Paper" || player2Move == "Spock")
+                if (player2Move == paper || player2Move == spock)
                 {
                     roundWinner = player1.name;
                     return roundWinner;
                 }
             }
-            else if (player1Move == "Spock")
+            else if (player1Move == spock)
             {
-                if (player2Move == "Scissors" || player2Move == "Rock")
+                if (player2Move == scissors || player2Move == rock)
                 {
                     roundWinner = player1.name;
                     return roundWinner;
@@ -194,7 +201,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 player2.score += 1;
             }
-            else if(roundWinner == "Tie")
+            else if(roundWinner == tie)
             {
 
             }

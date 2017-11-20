@@ -12,6 +12,7 @@ namespace RockPaperScissorsLizardSpock
         public int score = 0;
         public string name;
         public string move;
+        public char moveInput;
 
         //constructor
         public Player()

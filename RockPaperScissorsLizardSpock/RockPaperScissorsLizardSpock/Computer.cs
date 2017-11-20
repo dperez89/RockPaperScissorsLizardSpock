@@ -21,7 +21,7 @@ namespace RockPaperScissorsLizardSpock
         //member methods
         public override void SelectMove(UI userInterface, Game game1)
         {
-            DisplayComputerIsChoosing();
+            userInterface.DisplayComputerIsChoosing();
             randomNumber = random.Next(0, 5);
             switch (randomNumber)
             {
@@ -46,14 +46,6 @@ namespace RockPaperScissorsLizardSpock
                     break;
 
             }
-        }
-        private void DisplayComputerIsChoosing()
-        {
-            Console.Clear();
-            Console.WriteLine("The computer will now make its selection. Good luck!");
-            Console.WriteLine("Press any key to continue..");
-            Console.ReadKey();
-            Console.Clear();
         }
     }
 }

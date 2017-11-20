@@ -19,7 +19,8 @@ namespace RockPaperScissorsLizardSpock
         public override void SelectMove(UI userInterface, Game game1)
         {
             userInterface.DisplayPlayerMoveChoices(name);
-            move = userInterface.GetUserInput();
+            moveInput = userInterface.getPlayerMove();
+            move = userInterface.ResolvePlayerMoveInput(moveInput, move);
             isChoiceValid = game1.ValidatePlayerMoveChoice(move, isChoiceValid, userInterface);
             if (!isChoiceValid) 
             {

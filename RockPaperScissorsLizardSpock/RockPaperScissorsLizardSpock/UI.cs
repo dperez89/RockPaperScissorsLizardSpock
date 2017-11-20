@@ -8,22 +8,27 @@ namespace RockPaperScissorsLizardSpock
 {
     class UI
     {
-        //member variable
         string userInput;
+        char moveInput;
         Game game1 = new Game();
 
-        //constructor
         public UI()
         {
 
         }
 
-        //methods
         public void DisplayMainMenu()
         {
             Console.WriteLine("Rock, Paper, Scissors, Lizard Spock");
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Welcome to the game!");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("The name of the game is the game itself! You can engage in a friendly match");
+            Console.WriteLine("against a friend or you can try your luck against the computer itself.");
+            Console.WriteLine("All it takes to win is to defeat the other player three times.");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("You can make your selections by entering in the KEYWORDS when prompted,");
+            Console.WriteLine("or you can press the keys shown to make your move selections during the game.");
             Console.WriteLine(Environment.NewLine);
             Console.WriteLine("START",Environment.NewLine);
             Console.WriteLine("EXIT",Environment.NewLine);
@@ -50,6 +55,21 @@ namespace RockPaperScissorsLizardSpock
             }
 
         }
+        public char getPlayerMove()
+        {
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Make your move:");
+            moveInput = Console.ReadKey(true).KeyChar;
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Move selected! Press any key to continue..");
+            Console.ReadKey();
+            return moveInput;
+        }
+        public string ResolvePlayerMoveInput(char moveInput, string move)
+        {
+            move = moveInput.ToString();
+            return move;
+        }
         public string GetUserInput()
         {
             Console.WriteLine(Environment.NewLine);
@@ -62,6 +82,15 @@ namespace RockPaperScissorsLizardSpock
         public void DisplayRoundWinner(string roundWinner)
         {
             Console.WriteLine(roundWinner + " wins!");
+        }
+        public void DisplayComputerIsChoosing()
+        {
+            Console.Clear();
+            Console.WriteLine("The computer will now make its selection. Good luck!");
+            Console.WriteLine(Environment.NewLine);
+            Console.WriteLine("Press any key to continue..");
+            Console.ReadKey();
+            Console.Clear();
         }
         public string DisplayPlayerSelectionChoice(string userInput)
         {
@@ -98,8 +127,8 @@ namespace RockPaperScissorsLizardSpock
         {
             Console.WriteLine("ROUND RESULTS");
             Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Player 1 rolled a " + player1Move + "!");
-            Console.WriteLine("Player 2 rolled a " + player2Move + "!");
+            Console.WriteLine("Player 1 used the move " + player1Move + "!");
+            Console.WriteLine("Player 2 used the move " + player2Move + "!");
         }
         public void DisplayNumberOfPlayersRequest()
         {
@@ -121,7 +150,8 @@ namespace RockPaperScissorsLizardSpock
         public void DisplayGameWinner(string gameWinner)
         {
             Console.WriteLine(Environment.NewLine);
-            Console.WriteLine("Congratulations to " + gameWinner + "! You are today's winner!");
+            Console.WriteLine("Congratulations to " + gameWinner + "! You have won the game!");
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine("Press any key to return to the main menu...");
             Console.ReadKey();
             Console.Clear();
