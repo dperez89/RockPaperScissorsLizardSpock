@@ -41,9 +41,17 @@ namespace RockPaperScissorsLizardSpock
         }
         public void GetNumberOfPlayers(UI userInterface)
         {
-            userInput = userInterface.DisplayNumberOfPlayersRequest();
-            userInterface.DisplayPlayerSelectionChoice(userInput);
-            GeneratePlayers(userInput, userInterface);
+            userInterface.DisplayNumberOfPlayersRequest();
+            userInput = userInterface.GetUserInput();
+            userInput = userInterface.DisplayPlayerSelectionChoice(userInput);
+            if(userInput == "error")
+            {
+                GetNumberOfPlayers(userInterface);
+            }
+            else
+            {
+                GeneratePlayers(userInput, userInterface);
+            }            
         }
         public void GeneratePlayers(string userInput, UI userInterface)
         {
