@@ -42,23 +42,10 @@ namespace RockPaperScissorsLizardSpock
         public void GetNumberOfPlayers(UI userInterface)
         {
             userInput = userInterface.DisplayNumberOfPlayersRequest();
-            if(userInput == "friend")
-            {
-                Console.WriteLine("You have chosen friend!");
-                GeneratePlayers(userInput, userInterface);
-            }
-            else if(userInput == "computer")
-            {
-                Console.WriteLine("You have chosen computer!");
-                GeneratePlayers(userInput, userInterface);
-            }
-            else
-            {
-                Console.WriteLine("You have made an invalid option, please try again!");
-                GetNumberOfPlayers(userInterface);
-            }
+            userInterface.DisplayPlayerSelectionChoice(userInput);
+            GeneratePlayers(userInput, userInterface);
         }
-        private void GeneratePlayers(string userInput, UI userInterface)
+        public void GeneratePlayers(string userInput, UI userInterface)
         {
             if (userInput == "friend")
             {

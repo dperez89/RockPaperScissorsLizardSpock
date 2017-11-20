@@ -57,6 +57,25 @@ namespace RockPaperScissorsLizardSpock
         {
             Console.WriteLine(roundWinner + " wins!");
         }
+        public void DisplayPlayerSelectionChoice(string userInput)
+        {
+            if (userInput == "friend")
+            {
+                Console.WriteLine("You have chosen friend!");
+                game1.GeneratePlayers(userInput, this);
+            }
+            else if (userInput == "computer")
+            {
+                Console.WriteLine("You have chosen computer!");
+                game1.GeneratePlayers(userInput, this);
+            }
+            else
+            {
+                Console.WriteLine("You have made an invalid option, please try again!");
+                DisplayPlayerSelectionChoice(userInput);
+            }
+
+        }
         public void DisplayPlayerScores(Player player1, Player player2)
         {
             Console.WriteLine("Player 1's score is now " + player1.score + "!");
