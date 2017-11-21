@@ -8,30 +8,42 @@ namespace RockPaperScissorsLizardSpock
 {
     class Game
     {
-        //member variable
         Player player1;
         Player player2;
-        string userInput;
-        string player1Move;
-        string player2Move;
-        string roundWinner;
-        string gameWinner;
-        string rock = "Rock";
-        string paper = "Paper";
-        string scissors = "Scissors";
-        string lizard = "Lizard";
-        string spock = "Spock";
-        string tie = "Nobody";
-        int winningScore = 3;
+        private string userInput;
+        private string player1Move;
+        private string player2Move;
+        private string roundWinner;
+        private string gameWinner;
+        private string rock = "Rock";
+        private string paper = "Paper";
+        private string scissors = "Scissors";
+        private string lizard = "Lizard";
+        private string spock = "Spock";
+        private string tie = "Nobody";
+        private int winningScore = 3;
 
-        //constructor
         public Game()
         {
 
         }
+        private void GeneratePlayers(string userInput, UI userInterface, Game game1)
+        {
+            if (userInput == "friend")
+            {
+                player1 = new Human(0, "Player 1");
+                player2 = new Human(0, "Player 2");
+                PlayRound(player1, player2, userInterface, game1);
+            }
+            else if (userInput == "computer")
+            {
+                player1 = new Human(0, "Player 1");
+                player2 = new Computer(0, "The Computah");
+                PlayRound(player1, player2, userInterface, game1);
+            }
 
-        //methods
-        public void PlayRound(Player player1, Player player2, UI userInterface, Game game1)
+        }
+        private void PlayRound(Player player1, Player player2, UI userInterface, Game game1)
         {     
             player1.SelectMove(userInterface, game1);
             player1Move = GetResolvedMoveChoices(player1.move);
@@ -97,23 +109,7 @@ namespace RockPaperScissorsLizardSpock
             {
                 GeneratePlayers(userInput, userInterface, game1);
             }            
-        }
-        public void GeneratePlayers(string userInput, UI userInterface, Game game1)
-        {
-            if (userInput == "friend")
-            {
-                player1 = new Human(0, "Player 1");
-                player2 = new Human(0, "Player 2");
-                PlayRound(player1, player2, userInterface, game1);
-            }
-            else if (userInput == "computer")
-            {
-                player1 = new Human(0, "Player 1");
-                player2 = new Computer(0, "The Computah");
-                PlayRound(player1, player2, userInterface, game1);
-            }
-
-        }
+        }        
         private string GetResolvedMoveChoices(string playerMove)
         {
             switch(playerMove)
